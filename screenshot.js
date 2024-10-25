@@ -23,7 +23,7 @@ const path = require("path");
 
   // Take a screenshot and save it
   await page.screenshot({
-    path: path.join(__dirname, "screenshot.png"),
+    path: "/usr/src/app/data/screenshot.png",
     fullPage: true,
   });
 
