@@ -1,0 +1,10 @@
+version: "3"
+
+services:
+  puppeteer:
+    build: .
+    container_name: pptr
+    ports:
+      - "5900:5900"
+    environment:
+      DISPLAY: ":99"

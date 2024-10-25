@@ -1,0 +1,19 @@
+# Use an official Node.js runtime as the base image
+FROM node:21.2.0
+WORKDIR /app
+# Install necessary dependencies
+RUN apt-get update && apt-get install gnupg wget -y && \
+    wget -q -O- https://dl-ssl.google.com/linux/linux_signing_key.pub | gpg --dearmor > /etc/apt/trusted.gpg.d/google-archive.gpg && \
+    sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list' && \
+    apt-get update && \
+    apt-get install chromium -y --no-install-recommends && \
+    rm -rf /var/lib/apt/lists/*
+
+COPY ./package.json .
+RUN npm i
+
+COPY ./screenshot.js .
+
+# CMD [ "node", "screenshot.js" ]
+
+CMD tail -f /dev/null

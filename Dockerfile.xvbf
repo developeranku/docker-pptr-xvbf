@@ -1,0 +1,25 @@
+# Base image
+FROM ubuntu:20.04
+
+# Set environment to prevent prompts
+ENV DEBIAN_FRONTEND=noninteractive
+ENV TZ=Etc/UTC  
+
+# Install necessary packages
+RUN apt-get update && apt-get install -y \
+    xvfb \
+    x11vnc \
+    x11-utils \
+    dbus-x11 \
+    xfonts-base \
+    wget \
+    python3 \
+    python3-pip \
+    tzdata \
+    && rm -rf /var/lib/apt/lists/*
+
+# Set environment variable to avoid issues with some apps expecting a display
+ENV DISPLAY=:99
+
+# Start Xvfb
+CMD ["Xvfb", ":99", "-screen", "0", "1024x768x24", "-ac"]
