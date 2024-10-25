@@ -45,4 +45,4 @@ RUN npm i
 COPY ./screenshot.js .
 
 # Start Xvfb
-CMD ["Xvfb", ":99", "-screen", "0", "1024x768x24", "-ac", "node", "screenshot.js"]
+CMD Xvfb :99 -screen 0 1024x768x24 -ac & node screenshot.js
