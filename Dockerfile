@@ -42,7 +42,7 @@ ENV DISPLAY=:99
 COPY ./package.json .
 RUN npm i
 
-COPY ./screenshot.js .
+COPY ./bot.js .
 
 # Start Xvfb
-CMD Xvfb :99 -screen 0 1024x768x24 -ac & node screenshot.js
+CMD Xvfb :99 -screen 0 1024x768x24 -ac & node bot.js
